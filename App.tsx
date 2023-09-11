@@ -1,8 +1,8 @@
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { NavigationContainer } from "@react-navigation/native";
-import { Products } from "./src/features/products/products";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ProductDetails } from "./src/features/product-details/product-details";
+import {ProductDetails} from "./src/features/product-details/product-details";
+import {Products} from "./src/features/products/products";
+
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,11 +13,9 @@ export const ScreenNames = {
 
 function MyTabs() {
   return (
-    <Stack.Navigator
-      initialRouteName={ScreenNames.Products}
-    >
+    <Stack.Navigator initialRouteName={ScreenNames.Products}>
       <Stack.Screen name={ScreenNames.Products} component={Products} />
-      <Stack.Screen  name={ScreenNames.ProductDetails} component={ProductDetails} />
+      <Stack.Screen name={ScreenNames.ProductDetails} component={ProductDetails} />
     </Stack.Navigator>
   );
 }

@@ -1,7 +1,5 @@
 {
-  "plugins": [
-    "@trivago/prettier-plugin-sort-imports"
-  ],
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "arrowParens": "always",
   "bracketSameLine": true,
   "bracketSpacing": false,
@@ -26,11 +24,7 @@
   "importOrderBuiltinModulesToTop": true,
   "importOrderCombineTypeAndValueImports": true,
   "importOrderMergeDuplicateImports": true,
-  "importOrderParserPlugins": [
-    "typescript",
-    "jsx",
-    "decorators-legacy"
-  ],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "insertPragma": false,

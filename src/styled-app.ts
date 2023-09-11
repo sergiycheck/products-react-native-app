@@ -11,14 +11,14 @@ export const StyledText = styled.Text`
   color: #bf4f74;
 `;
 
-export const StyledButton = styled.Button<{ $primary?: boolean; }>`
-  background: ${props => props.$primary ? "#BF4F74" : "white"};
-  color: ${props => props.$primary ? "white" : "#BF4F74"};
+export const StyledButton = styled.Button<{$primary?: boolean}>`
+  background: ${(props) => (props.$primary ? "#BF4F74" : "white")};
+  color: ${(props) => (props.$primary ? "white" : "#BF4F74")};
 
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid #BF4F74;
+  border: 2px solid #bf4f74;
   border-radius: 3px;
 `;
 
@@ -29,7 +29,7 @@ export const AddProductAbsolute = styled.TouchableOpacity`
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  background-color: #BF4F74;
+  background-color: #bf4f74;
   align-items: center;
   justify-content: center;
   display: flex;
