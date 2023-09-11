@@ -22,6 +22,17 @@ export const StyledButton = styled.Button<{$primary?: boolean}>`
   border-radius: 3px;
 `;
 
+export const StyledProductItem = styled.View`
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+
+  flex-direction: column;
+  display: flex;
+  gap: 7px;
+`;
+
 export const AddProductAbsolute = styled.TouchableOpacity`
   position: absolute;
   bottom: 20px;
