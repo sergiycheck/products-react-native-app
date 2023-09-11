@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@tanstack/eslint-plugin-query": "^4.34.1",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/react": "^18.2.21",
     "@types/react-native-vector-icons": "^6.4.14",

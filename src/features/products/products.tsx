@@ -1,5 +1,5 @@
-import {ScreenNames} from "../../../App";
 import {AddProductAbsolute, StyledContainer, StyledText} from "../../styled-app";
+import {ScreenNames} from "../screen-names";
 
 import Icon from "react-native-vector-icons/Ionicons";
 

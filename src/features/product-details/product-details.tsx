@@ -1,5 +1,5 @@
-import {ScreenNames} from "../../../App";
 import {StyledButton, StyledContainer, StyledText} from "../../styled-app";
+import {ScreenNames} from "../screen-names";
 
 export function ProductDetails({navigation}: {navigation: any}) {
   return (
