@@ -15,8 +15,13 @@ const Stack = createNativeStackNavigator();
 function MyTabs() {
   return (
     <Stack.Navigator initialRouteName={ScreenNames.Products} screenOptions={{headerShown: false}}>
-      <Stack.Screen name={ScreenNames.Products} component={Products} />
-      <Stack.Screen name={ScreenNames.AddProduct} component={AddProduct} />
+      <Stack.Group>
+        <Stack.Screen name={ScreenNames.Products} component={Products} />
+      </Stack.Group>
+
+      <Stack.Group screenOptions={{presentation: "modal"}}>
+        <Stack.Screen name={ScreenNames.AddProduct} component={AddProduct} />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }

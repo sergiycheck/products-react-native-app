@@ -1,3 +1,4 @@
+import {StyleSheet} from "react-native";
 import styled from "styled-components/native";
 
 export const StyledContainer = styled.View`
@@ -11,15 +12,24 @@ export const StyledText = styled.Text`
   color: #bf4f74;
 `;
 
-export const StyledButton = styled.Button<{$primary?: boolean}>`
-  background: ${(props) => (props.$primary ? "#BF4F74" : "white")};
-  color: ${(props) => (props.$primary ? "white" : "#BF4F74")};
+export const SErrorText = styled.Text`
+  color: red;
+`;
 
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
+export const StyledButton = styled.TouchableOpacity`
+  background: #bf4f74;
+  color: white;
   border: 2px solid #bf4f74;
-  border-radius: 3px;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+export const StyledButtonText = styled.Text`
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
 `;
 
 export const StyledProductItem = styled.View`
@@ -47,3 +57,12 @@ export const AddProductAbsolute = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
+
+export const imageStyles = StyleSheet.create({
+  image: {
+    flex: 1,
+    backgroundColor: "#0553",
+    height: 200,
+    width: "100%",
+  },
+});
