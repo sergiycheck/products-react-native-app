@@ -1,7 +1,7 @@
 import React from "react";
 
 import {SErrorText, StyledButton, StyledButtonText, StyledText, imageStyles} from "../../styled-app";
-import {productSchema} from "../products-api";
+import {Product, productSchema} from "../products-api";
 import {ScreenNames} from "../screen-names";
 import {blurhash} from "../utils";
 import {
@@ -14,6 +14,8 @@ import {
 } from "./styled";
 
 import {zodResolver} from "@hookform/resolvers/zod";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {useQueryClient} from "@tanstack/react-query";
 import {Image} from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import {Controller, useForm} from "react-hook-form";
@@ -42,9 +44,30 @@ export function AddProduct({navigation}: {navigation: any}) {
   });
 
   const [image, setImage] = React.useState<string | null>(null);
+  const queryClient = useQueryClient();
 
   const onSubmit = (data: ProductToAdd) => {
-    console.log({...data, image});
+    if (!image) return;
+
+    const oldProducts = queryClient.getQueryData<Product[]>(["products"]) ?? [];
+
+    const newProduct: Product = {
+      ...data,
+      image,
+      id: oldProducts.length + 1,
+    };
+
+    AsyncStorage.getItem("products", (err, result) => {
+      if (err) return;
+
+      const prevProducts = result ? (JSON.parse(result) as Product[]) : [];
+
+      const newProducts = [...prevProducts, newProduct];
+
+      AsyncStorage.setItem("products", JSON.stringify(newProducts), () => {
+        navigation.navigate(ScreenNames.Products);
+      });
+    });
   };
 
   const pickImage = async () => {
@@ -54,8 +77,6 @@ export function AddProduct({navigation}: {navigation: any}) {
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);

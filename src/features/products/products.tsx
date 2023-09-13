@@ -3,8 +3,9 @@ import React from "react";
 import {AddProductAbsolute, StyledContainer, StyledProductItem, StyledText, imageStyles} from "../../styled-app";
 import {Product, fetchProducts} from "../products-api";
 import {ScreenNames} from "../screen-names";
-import {blurhash} from "../utils";
+import {blurhash, mergeTwoArraysOfObjectsById} from "../utils";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {Image} from "expo-image";
 import {FlatList, RefreshControl} from "react-native";
@@ -13,8 +14,10 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export function Products({navigation}: {navigation: any}) {
   const [refreshing, setRefreshing] = React.useState(false);
+  const {data, isLoading, isError} = useQuery({queryKey: ["products"], queryFn: fetchProducts});
 
-  const {data, isLoading, isError, error} = useQuery({queryKey: ["products"], queryFn: fetchProducts});
+  const dataLatest = React.useMemo(() => (data ? data?.sort((a, b) => b.id - a.id) : []), [data]);
+
   const queryClient = useQueryClient();
 
   const insets = useSafeAreaInsets();
@@ -22,15 +25,22 @@ export function Products({navigation}: {navigation: any}) {
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
-      queryClient.resetQueries(["products"]);
       setRefreshing(false);
+
+      AsyncStorage.getItem("products", (err, result) => {
+        if (err) return;
+        const cachedProducts = result ? (JSON.parse(result) as Product[]) : [];
+        queryClient.setQueryData<Product[]>(["products"], (oldProducts) => {
+          const uniqueProducts = mergeTwoArraysOfObjectsById(oldProducts ?? [], cachedProducts);
+          return uniqueProducts;
+        });
+      });
     }, 1000);
   }, []);
 
   return (
     <StyledContainer
       style={{
-        // Paddings to handle safe area
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
         paddingLeft: insets.left,
@@ -40,10 +50,10 @@ export function Products({navigation}: {navigation: any}) {
 
       {isError && <StyledText>Error!</StyledText>}
 
-      {data && (
+      {dataLatest && (
         <FlatList
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-          data={data}
+          data={dataLatest}
           renderItem={({item}) => <ProductItem product={item} />}
           keyExtractor={(item) => `${item.id}`}
         />

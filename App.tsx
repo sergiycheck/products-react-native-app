@@ -29,6 +29,8 @@ function MyTabs() {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 60 * 24, // 24 hours
       cacheTime: 1000 * 60 * 60 * 24, // 24 hours
     },
   },

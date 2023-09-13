@@ -55,7 +55,6 @@ export const STextInput = styled.TextInput`
   padding-left: 12px;
   padding-top: 24px;
   color: #333;
-  outline: none;
 `;
 
 export const TextInputMaskStyles = StyleSheet.create({
