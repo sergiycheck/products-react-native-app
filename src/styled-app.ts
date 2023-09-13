@@ -32,7 +32,7 @@ export const StyledButtonText = styled.Text`
   font-size: 16px;
 `;
 
-export const StyledProductItem = styled.View`
+export const StyledProductItem = styled.TouchableOpacity`
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;

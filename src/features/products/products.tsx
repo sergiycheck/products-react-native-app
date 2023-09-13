@@ -6,6 +6,7 @@ import {ScreenNames} from "../screen-names";
 import {blurhash, mergeTwoArraysOfObjectsById} from "../utils";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {useNavigation} from "@react-navigation/native";
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {Image} from "expo-image";
 import {FlatList, RefreshControl} from "react-native";
@@ -67,8 +68,9 @@ export function Products({navigation}: {navigation: any}) {
 }
 
 const ProductItem = ({product}: {product: Product}) => {
+  const navigation = useNavigation() as any;
   return (
-    <StyledProductItem>
+    <StyledProductItem onPress={() => navigation.navigate(ScreenNames.ProductDetails, {itemId: product.id})}>
       <Image
         style={imageStyles.image}
         source={product.image}

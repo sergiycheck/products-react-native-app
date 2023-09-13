@@ -1,4 +1,5 @@
 import {AddProduct} from "./src/features/add-product/add-product";
+import {ProductDetails} from "./src/features/product-details/product-details";
 import {Products} from "./src/features/products/products";
 import {ScreenNames} from "./src/features/screen-names";
 
@@ -17,6 +18,7 @@ function MyTabs() {
     <Stack.Navigator initialRouteName={ScreenNames.Products} screenOptions={{headerShown: false}}>
       <Stack.Group>
         <Stack.Screen name={ScreenNames.Products} component={Products} />
+        <Stack.Screen name={ScreenNames.ProductDetails} component={ProductDetails} />
       </Stack.Group>
 
       <Stack.Group screenOptions={{presentation: "modal"}}>

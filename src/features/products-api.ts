@@ -23,3 +23,8 @@ export const fetchProducts = async () => {
   const {data} = await axiosInstance.get<Product[]>("/products");
   return data;
 };
+
+export const fetchSingleProduct = async (id: number) => {
+  const {data} = await axiosInstance.get<Product>(`/products/${id}`);
+  return data;
+};
