@@ -25,7 +25,8 @@
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.sergiycheck.productsapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
